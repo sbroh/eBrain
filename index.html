@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBrain: Your Strategic Partner for Tech Talent in Korea</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with a Tech Blue Accent -->
+    <!-- Application Structure Plan: A thematic, single-page scrolling experience designed for a logical user journey. The flow is: 1) Hero (Value Prop), 2) The Market (Opportunity vs. Challenge), 3) Our Solution (Metrics & Services), 4) The Advantage (Why Us), 5) Proof (Success Stories & Heritage), 6) Contact. This structure guides a potential client from understanding the market's value to seeing our firm as the essential partner, which is more persuasive than a linear report. -->
+    <!-- Visualization & Content Choices: Key metrics are animated counters for impact. Talent pool composition is shown via interactive Chart.js doughnut charts for clear proportional comparison. The company history is an animated vertical timeline built with HTML/CSS to show growth dynamically. Services and advantages are presented in a clean, modern card layout for scannability. This mix of dynamic stats, interactive charts, and animated layouts makes the data engaging and easy to digest. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #2D3748;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .timeline-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">
+                eBrain<span class="text-blue-600">.</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#opportunity" class="text-gray-600 hover:text-blue-600 transition-colors">The Opportunity</a>
+                <a href="#solution" class="text-gray-600 hover:text-blue-600 transition-colors">Our Solution</a>
+                <a href="#advantage" class="text-gray-600 hover:text-blue-600 transition-colors">Our Advantage</a>
+                <a href="#proof" class="text-gray-600 hover:text-blue-600 transition-colors">Proof</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+            </nav>
+            <a href="#contact" class="hidden md:inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-all">Get Started</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="pt-32 pb-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight">
+                    Unlocking Korea's Elite
+                    <span class="block text-blue-600">Software Talent</span>
+                </h1>
+                <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600">
+                    We are your strategic partner for technical recruitment and growth, bridging the gap between global vision and local excellence in South Korea's dynamic tech landscape.
+                </p>
+                <div class="mt-10">
+                    <a href="#contact" class="bg-blue-600 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl">
+                        Build Your A-Team
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="opportunity" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800">The Korean Talent Equation</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Understanding the unique opportunities and challenges of the Korean developer market is key to your success.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-start">
+                    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                        <h3 class="text-3xl font-bold text-green-600 mb-4">The Opportunity</h3>
+                        <p class="text-gray-700 mb-6 font-medium">Why you should bet on Korean Developers.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-green-500 font-bold text-xl mr-3 mt-1">&#10003;</span>
+                                <div><strong class="text-gray-800">Technical Excellence:</strong> Cultivated by rigorous education and intense competition, they possess deep expertise in modern tech stacks.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 font-bold text-xl mr-3 mt-1">&#10003;</span>
+                                <div><strong class="text-gray-800">Problem-Solving Mindset:</strong> Known for their tenacity and a 'get-it-done' attitude, relentlessly pursuing solutions.</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-green-500 font-bold text-xl mr-3 mt-1">&#10003;</span>
+                                <div><strong class="text-gray-800">Loyalty & Commitment:</strong> When aligned with a company's vision, they show profound dedication to long-term growth.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                        <h3 class="text-3xl font-bold text-red-600 mb-4">The Challenge</h3>
+                        <p class="text-gray-700 mb-6 font-medium">Navigating the complexities of a high-demand market.</p>
+                         <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-red-500 font-bold text-xl mr-3 mt-1">&#10007;</span>
+                                <div><strong class="text-gray-800">Sourcing Dilemma:</strong> Top-tier talent is often passive and not on global platforms, requiring trusted local networks.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 font-bold text-xl mr-3 mt-1">&#10007;</span>
+                                <div><strong class="text-gray-800">Vetting Hurdle:</strong> Accurately assessing true technical and cultural fit requires deep, expert-led validation.</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-red-500 font-bold text-xl mr-3 mt-1">&#10007;</span>
+                                <div><strong class="text-gray-800">High Cost of a Bad Hire:</strong> A misaligned hire impacts morale, timelines, and your reputation in the market.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800">The eBrain Solution</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">We provide a proven, data-driven approach to connect you with Korea's best tech talent. Our numbers speak for themselves.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-16">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm transition-all duration-300 stat-card">
+                        <div class="text-blue-600 text-5xl font-extrabold" data-target="520">0</div>
+                        <p class="mt-2 text-lg font-semibold text-gray-700">Satisfied Clients</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm transition-all duration-300 stat-card">
+                        <div class="text-blue-600 text-5xl font-extrabold" data-target="1000">0</div>
+                        <p class="mt-2 text-lg font-semibold text-gray-700">Successful Placements</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm transition-all duration-300 stat-card">
+                        <div class="text-blue-600 text-5xl font-extrabold" data-target="92">0</div>
+                        <p class="mt-2 text-lg font-semibold text-gray-700">% Satisfaction Rate</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">An Unrivaled Talent Pool</h3>
+                        <p class="text-gray-600 text-lg mb-6">Our placements are highly focused on the technical roles that drive innovation. We have a deep understanding of the skills and expertise you need to build a world-class engineering team.</p>
+                        <p class="text-gray-600 text-lg">The charts illustrate the composition of our talent pool, showcasing our specialization in connecting you with elite developers across all key domains.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-center text-lg font-semibold text-gray-700 mb-2">Placements by Role</h4>
+                            <div class="chart-container">
+                                <canvas id="roleChart"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-center text-lg font-semibold text-gray-700 mb-2">Developers by Position</h4>
+                            <div class="chart-container">
+                                <canvas id="devChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advantage" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800">The eBrain Advantage</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">What truly sets us apart is our methodology and commitment to your long-term success.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Deep Community Roots</h3>
+                        <p class="text-gray-600">Through our operation of 'OKKY', Korea's largest developer community, we have unparalleled access to over 400,000 active and passive candidates. We don't just find talent; we are part of their community.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center">
+                        <div class="text-4xl mb-4">🔬</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Rigorous Expert Vetting</h3>
+                        <p class="text-gray-600">Every candidate is vetted by seasoned CTOs and senior engineers. We go beyond resumes to verify technical depth, problem-solving skills, and cultural alignment through personal interviews.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center">
+                        <div class="text-4xl mb-4">✨</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Principled Partnership</h3>
+                        <p class="text-gray-600">Your trust is our most valuable asset. We operate with complete transparency and a strict code of ethics, focusing on your long-term success, not short-term fees. We never poach candidates we've placed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proof" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800">Proof & Heritage</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Our legacy is built on years of contribution to the developer ecosystem and a track record of empowering global leaders.</p>
+                </div>
+
+                <div class="mb-20">
+                    <h3 class="text-3xl font-bold text-center text-gray-800 mb-10">Success Stories</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gray-50 p-8 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-xl text-blue-600 mb-2">Global SaaS Co. Market Entry</h4>
+                            <p class="text-gray-600"><strong class="text-gray-800">Challenge:</strong> Build a foundational engineering team in Korea with no local brand recognition.</p>
+                            <p class="text-gray-600 mt-2"><strong class="text-gray-800">Outcome:</strong> Successfully established their Korean R&D center in 6 months, 40% ahead of schedule, by sourcing their first three senior engineers, including the Site Lead.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-xl text-blue-600 mb-2">High-Growth FinTech Startup</h4>
+                            <p class="text-gray-600"><strong class="text-gray-800">Challenge:</strong> Rapidly scale backend and mobile teams to support a major product launch.</p>
+                            <p class="text-gray-600 mt-2"><strong class="text-gray-800">Outcome:</strong> Placed 8 senior engineers in one quarter, enabling a successful, on-schedule launch and securing a dominant market position.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Journey</h3>
+                    <div class="relative max-w-2xl mx-auto">
+                        <div class="absolute left-1/2 top-0 h-full w-0.5 bg-blue-200"></div>
+                        <div class="space-y-12">
+                            <div class="timeline-item relative">
+                                <div class="md:flex items-center">
+                                    <div class="md:w-1/2 text-center md:text-right md:pr-8">
+                                        <p class="text-lg font-bold text-blue-600">2011</p>
+                                        <p class="text-gray-700">eBrain Consulting founded as a specialized Tech-HR firm.</p>
+                                    </div>
+                                    <div class="md:w-1/2 md:pl-8 mt-4 md:mt-0"></div>
+                                </div>
+                                <div class="absolute left-1/2 -translate-x-1/2 top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+                            </div>
+                             <div class="timeline-item relative">
+                                <div class="md:flex items-center flex-row-reverse">
+                                    <div class="md:w-1/2 text-center md:text-left md:pl-8">
+                                        <p class="text-lg font-bold text-blue-600">2013</p>
+                                        <p class="text-gray-700">Acquired 'OKKY', Korea's largest developer community.</p>
+                                    </div>
+                                    <div class="md:w-1/2 md:pr-8 mt-4 md:mt-0"></div>
+                                </div>
+                                <div class="absolute left-1/2 -translate-x-1/2 top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+                            </div>
+                            <div class="timeline-item relative">
+                                <div class="md:flex items-center">
+                                    <div class="md:w-1/2 text-center md:text-right md:pr-8">
+                                        <p class="text-lg font-bold text-blue-600">2016</p>
+                                        <p class="text-gray-700">Selected as official Search Firm Partner for Cloudera Korea.</p>
+                                    </div>
+                                    <div class="md:w-1/2 md:pl-8 mt-4 md:mt-0"></div>
+                                </div>
+                                <div class="absolute left-1/2 -translate-x-1/2 top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+                            </div>
+                            <div class="timeline-item relative">
+                                <div class="md:flex items-center flex-row-reverse">
+                                    <div class="md:w-1/2 text-center md:text-left md:pl-8">
+                                        <p class="text-lg font-bold text-blue-600">2017-Present</p>
+                                        <p class="text-gray-700">Continuously hosting and sponsoring major tech conferences and community events.</p>
+                                    </div>
+                                    <div class="md:w-1/2 md:pr-8 mt-4 md:mt-0"></div>
+                                </div>
+                                <div class="absolute left-1/2 -translate-x-1/2 top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+                            </div>
+                             <div class="timeline-item relative">
+                                <div class="md:flex items-center">
+                                    <div class="md:w-1/2 text-center md:text-right md:pr-8">
+                                        <p class="text-lg font-bold text-blue-600">2023</p>
+                                        <p class="text-gray-700">Launched B2B educational services to further enhance tech team capabilities.</p>
+                                    </div>
+                                    <div class="md:w-1/2 md:pl-8 mt-4 md:mt-0"></div>
+                                </div>
+                                <div class="absolute left-1/2 -translate-x-1/2 top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact" class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold">Building Your A-Team in Korea Starts Here</h2>
+                <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Let us handle the complexities of recruitment so you can focus on what you do best: building your business. Contact us for a confidential consultation.</p>
+            </div>
+            <div class="mt-12 text-center max-w-4xl mx-auto bg-gray-700 p-8 rounded-lg">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-bold text-lg text-blue-300">Email Us</h4>
+                        <a href="mailto:recruit@ebrain.kr" class="text-gray-200 hover:text-white">recruit@ebrain.kr</a>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-blue-300">Call Us</h4>
+                        <p class="text-gray-200">+82-2-6933-5070</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-blue-300">Visit Us</h4>
+                        <p class="text-gray-200">502, TGL Gyeongbok Bldg, Gangnam-gu, Seoul</p>
+                    </div>
+                </div>
+                 <div class="mt-8">
+                    <a href="https://www.ebrain.kr/" target="_blank" rel="noopener noreferrer" class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition-all inline-block">Visit Our Website</a>
+                 </div>
+            </div>
+            <div class="mt-12 text-center text-gray-400 text-sm">
+                &copy; 2024 eBrain, Inc. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const navLinks = document.querySelectorAll('header nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            const animateOnScroll = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        if (el.classList.contains('timeline-item')) {
+                            el.classList.add('is-visible');
+                        } else if (el.hasAttribute('data-target')) {
+                            const target = +el.getAttribute('data-target');
+                            el.innerText = '0';
+                            let current = 0;
+                            const increment = target / 100;
+
+                            const updateCounter = () => {
+                                if (current < target) {
+                                    current += increment;
+                                    el.innerText = Math.ceil(current);
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    el.innerText = target.toLocaleString() + (el.getAttribute('data-target') === '1000' ? '+' : (el.getAttribute('data-target') === '520' ? '+' : '%'));
+                                }
+                            };
+                            updateCounter();
+                        }
+                        observer.unobserve(el);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(animateOnScroll, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('[data-target]').forEach(el => observer.observe(el));
+            document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#4A5568',
+                            font: { size: 12 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` ${context.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                }
+            };
+
+            const roleCtx = document.getElementById('roleChart');
+            if(roleCtx) {
+                new Chart(roleCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Developers', 'Service Planners/PMs', 'Other'],
+                        datasets: [{
+                            data: [85, 11, 5],
+                            backgroundColor: ['#3B82F6', '#60A5FA', '#BFDBFE'],
+                            borderColor: '#FFFFFF',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: chartOptions
+                });
+            }
+
+            const devCtx = document.getElementById('devChart');
+            if(devCtx) {
+                new Chart(devCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Backend', 'Frontend', 'Mobile', 'Full Stack', 'CTO/Leader', 'Etc'],
+                        datasets: [{
+                            data: [30, 25, 15, 10, 10, 10],
+                            backgroundColor: ['#1E40AF', '#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE'],
+                            borderColor: '#FFFFFF',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: chartOptions
+                });
+            }
+        });
+    </script>
+</body>
+</html>
