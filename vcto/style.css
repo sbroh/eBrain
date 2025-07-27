@@ -178,32 +178,40 @@ h2 {
 .service-intro {
     text-align: center; max-width: 800px; margin: 0 auto 30px; /* 여백 줄임 */
 }
+/* --- 섹션 제목 --- */
+.section-title {
+    font-size: 2rem;
+    color: var(--white);
+    text-align: center;
+    margin: 80px 0 40px 0;
+    font-weight: 700;
+}
+
+/* --- 서비스 그리드 --- */
 .service-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2열 구조로 변경 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-    margin-bottom: 40px; /* 여백 추가 */
-    max-width: 1000px;
-    margin: 0 auto;
+    margin-bottom: 100px; /* 다음 섹션과의 간격 증가 */
 }
 
 .service-card {
     background-color: var(--light-navy);
     padding: 30px;
-    border-radius: 5px;
+    border-radius: 8px;
     height: 100%;
 }
 
-.service-card h4 {
-    color: var(--mint);
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+.service-card h3 {
+    color: var(--light-blue);
+    margin: 0 0 20px 0;
+    font-size: 1.3rem;
 }
 
 .service-card p {
     margin: 0;
     line-height: 1.6;
+    color: var(--light-slate);
 }
 
 /* 모바일 반응형 처리 */
@@ -211,6 +219,31 @@ h2 {
     .service-grid {
         grid-template-columns: 1fr; /* 모바일에서는 1열로 변경 */
     }
+}
+
+/* --- 강점 섹션 --- */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.benefit-card {
+    background-color: var(--light-navy);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.benefit-card h3 {
+    color: var(--light-blue);
+    margin: 0 0 20px 0;
+    font-size: 1.3rem;
+}
+
+.benefit-card p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--light-slate);
 }
 
 .benefits-grid {
