@@ -14,7 +14,7 @@
 body {
     background-color: var(--dark-navy);
     color: var(--light-slate);
-    font-family: var(--font-sans);
+    font-family: -apple-system, sans-serif; /* 이렇게 수정합니다. */
     margin: 0;
     padding: 0;
     line-height: 1.6;
